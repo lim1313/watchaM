@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import './App.css';
 import MovieLike from './components/movieLike';
-import MovieList from './components/movieList';
+import MovieList from './components/movieList/movieList';
 import Navbar from './components/navbar/navbar';
 import { initAllMovie } from './redux/moveList/actions';
 

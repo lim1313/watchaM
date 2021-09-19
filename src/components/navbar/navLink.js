@@ -17,7 +17,7 @@ const LinkStyle = styled(Link)`
 const NavLink = (props) => {
   return (
     <div>
-      <LinkStyle to='/' logo>
+      <LinkStyle to='/' logo='ture'>
         WatchaM
       </LinkStyle>
       <LinkStyle to='/movieList'>전체 리스트</LinkStyle>
