@@ -1,19 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import MoviePopularList from './moviePopularList';
 
-const MovieList = (props) => {
-  const allMovie = useSelector((state) => state.allMovie);
+const Wrapper = styled.div`
+  width: 80%;
+  margin: 0 auto;
+`;
 
-  const Wrapper = styled.div`
-    width: 80%;
-    margin: 0 auto;
-  `;
-
+const MovieList = ({ like }) => {
   return (
     <Wrapper>
-      <MoviePopularList />
+      <MoviePopularList like={like} />
     </Wrapper>
   );
 };

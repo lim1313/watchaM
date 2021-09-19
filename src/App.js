@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import './App.css';
-import MovieLike from './components/movieLike';
 import MovieList from './components/movieList/movieList';
 import Navbar from './components/navbar/navbar';
 import { initAllMovie } from './redux/moveList/actions';
@@ -34,7 +33,7 @@ function App() {
             <MovieList />
           </Route>
           <Route exact path='/movieLike'>
-            <MovieLike />
+            <MovieList like='like' />
           </Route>
         </Switch>
       </Wrapper>
