@@ -1,23 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import SearchInputForm from './searchInputForm';
 
 const Wrapper = styled.div`
-  display: relative;
-`;
-
-const InputBox = styled.input`
-  outline: none;
-  width: ${({ focus }) => (focus ? '300px' : '38px')};
-  height: 38px;
-  margin: 0;
-  padding-left: 38px;
-  font-size: 1rem;
-  background-color: rgba(255, 255, 255, 0.7);
-  border: none;
-  border-radius: 2px;
-  transition: width 0.4s ease-in;
+  position: relative;
 `;
 
 const FontIcon = styled(FontAwesomeIcon)`
@@ -33,29 +21,19 @@ const FontIcon = styled(FontAwesomeIcon)`
 
 const SearchMovie = (props) => {
   const [focus, setFocus] = useState(false);
-  const [inputValue, setInputValue] = useState();
 
-  const inputRef = useRef(null);
-
-  const iconClick = (e) => {
-    setFocus(!focus);
+  const iconClick = (value) => {
     if (!focus) {
-      inputRef.current.focus();
+      setFocus(!focus);
+    } else if (value.length === 0) {
+      setFocus(!focus);
     }
   };
 
   return (
     <Wrapper>
       <FontIcon icon={faSearch} onClick={iconClick} />
-      <InputBox
-        type='text'
-        placeholder='영화이름을 검색하세요'
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        ref={inputRef}
-        focus={focus}
-        onBlur={iconClick}
-      ></InputBox>
+      <SearchInputForm focus={focus} iconClick={iconClick} />
     </Wrapper>
   );
 };

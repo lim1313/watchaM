@@ -1,5 +1,5 @@
 import { INIT_MOVIE } from './type';
-import { LIKE_ATTR } from './type';
+import { SEARCH_MOVIE } from './type';
 
 export const initAllMovie = (movieKey) => {
   return (dispatch) => {
@@ -11,7 +11,14 @@ export const initAllMovie = (movieKey) => {
   };
 };
 
-const allMovie = (data) => {
+export const searchMovie = (name) => {
+  return {
+    type: SEARCH_MOVIE,
+    payload: name,
+  };
+};
+
+export const allMovie = (data) => {
   return {
     type: INIT_MOVIE,
     payload: data,

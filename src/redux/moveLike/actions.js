@@ -1,4 +1,3 @@
-import { likeAttr } from '../moveList/actions';
 import { ADD_LIKE_MOVIE } from './type';
 
 // export const addLikeAttr = (data) => {

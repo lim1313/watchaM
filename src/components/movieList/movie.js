@@ -4,8 +4,9 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import addLikeMovie from '../../redux/moveLike/actions';
+import { Link } from 'react-router-dom';
 
 const MovieLI = styled.li`
   width: 200px;
@@ -50,7 +51,7 @@ const MovieLI = styled.li`
 
       &.filled {
         color: ${({ theme }) => theme.colors.mainPink};
-        filter: drop-shadow(0px 0px 3px white);
+        filter: drop-shadow(0px 0px 7px white);
       }
 
       &:hover {
@@ -79,10 +80,17 @@ const Movie = ({ data, num, likeMV }) => {
   return (
     <MovieLI>
       <div className='imageWrap'>
-        <img
-          src={`https://image.tmdb.org/t/p/w200/${data.poster_path}`}
-          alt={data.original_title}
-        />
+        <Link
+          to={{
+            pathname: '/movieList',
+            search: `?movie=${data.original_title}`,
+          }}
+        >
+          <img
+            src={`https://image.tmdb.org/t/p/w200/${data.poster_path}`}
+            alt={data.original_title}
+          />
+        </Link>
         <span className='num'>{num + 1}</span>
         <span
           className={likeMV ? 'heart filled' : 'heart'}
