@@ -21,7 +21,7 @@ const NavLink = (props) => {
         WatchaM
       </LinkStyle>
       <LinkStyle to='/movieList'>전체 리스트</LinkStyle>
-      <LinkStyle to='/movieLike'>찜한 영화</LinkStyle>
+      <LinkStyle to='/movieList/like'>찜한 영화</LinkStyle>
     </div>
   );
 };

@@ -1,4 +1,12 @@
+import { likeAttr } from '../moveList/actions';
 import { ADD_LIKE_MOVIE } from './type';
+
+// export const addLikeAttr = (data) => {
+//   return (dispatch) => {
+//     dispatch(addLikeMovie(data));
+//     dispatch(likeAttr(data));
+//   };
+// };
 
 const addLikeMovie = (data) => {
   return {

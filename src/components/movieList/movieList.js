@@ -7,10 +7,10 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-const MovieList = ({ like }) => {
+const MovieList = () => {
   return (
     <Wrapper>
-      <MoviePopularList like={like} />
+      <MoviePopularList />
     </Wrapper>
   );
 };

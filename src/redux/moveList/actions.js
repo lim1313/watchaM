@@ -1,7 +1,8 @@
 import { INIT_MOVIE } from './type';
+import { LIKE_ATTR } from './type';
 
 export const initAllMovie = (movieKey) => {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${movieKey}`)
       .then((res) => res.json())
       .then((data) => {
@@ -16,3 +17,10 @@ const allMovie = (data) => {
     payload: data,
   };
 };
+
+// export const likeAttr = (data) => {
+//   return {
+//     type: LIKE_ATTR,
+//     payload: data,
+//   };
+// };

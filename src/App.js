@@ -32,8 +32,8 @@ function App() {
           <Route exact path='/movieList'>
             <MovieList />
           </Route>
-          <Route exact path='/movieLike'>
-            <MovieList like='like' />
+          <Route exact path='/movieList/:like'>
+            <MovieList />
           </Route>
         </Switch>
       </Wrapper>

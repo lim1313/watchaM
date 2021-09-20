@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +9,11 @@ import addLikeMovie from '../../redux/moveLike/actions';
 
 const MovieLI = styled.li`
   width: 200px;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+
+  & .data {
+    margin-bottom: 0.2rem;
+  }
 
   & .imageWrap {
     position: relative;
@@ -41,28 +46,34 @@ const MovieLI = styled.li`
       font-size: 1.5rem;
       color: rgba(255, 255, 255, 0.7);
       margin: 0.5rem;
-      transition: color 0.2s;
+      transition: color 0.3s;
 
       &.filled {
         color: ${({ theme }) => theme.colors.mainPink};
+        filter: drop-shadow(0px 0px 3px white);
       }
 
       &:hover {
         cursor: pointer;
         color: ${({ theme }) => theme.colors.mainPink};
+        filter: drop-shadow(0px 0px 5px white);
       }
     }
   }
+  & .subData {
+    color: ${({ theme }) => theme.colors.darkLight};
+    font-size: 0.9rem;
+  }
 `;
 
-const Movie = ({ data, num, like }) => {
-  const [likeBtn, setLikeBtn] = useState(like ? true : false);
+const Movie = ({ data, num, likeMV }) => {
+  const [likeMv, setLikeMv] = useState(false);
 
   const dispatch = useDispatch();
 
-  const heartClick = (e, data) => {
-    setLikeBtn(!likeBtn);
-    dispatch(addLikeMovie({ ...data }));
+  const heartClick = (data) => {
+    dispatch(addLikeMovie(data));
+    setLikeMv(!likeMv);
   };
 
   return (
@@ -74,19 +85,23 @@ const Movie = ({ data, num, like }) => {
         />
         <span className='num'>{num + 1}</span>
         <span
-          className={likeBtn ? 'heart filled' : 'heart'}
-          onClick={(e) => heartClick(e, data)}
+          className={likeMV ? 'heart filled' : 'heart'}
+          onClick={() => heartClick(data)}
         >
-          {likeBtn ? (
+          {likeMV ? (
             <FontAwesomeIcon icon={faHeart} />
           ) : (
             <FontAwesomeIcon icon={farHeart} />
           )}
         </span>
       </div>
-      <div>{data.original_title}</div>
-      <div>{data.release_date}</div>
-      <div>VOTE AVERAGE : {data.vote_average}</div>
+      <div className='data'>{data.original_title}</div>
+      <div className='data subData'>{data.release_date}</div>
+      <div className='data subData'>
+        <span>Average </span>
+        <FontAwesomeIcon icon={faStar} />
+        <span> {data.vote_average}</span>
+      </div>
       {/* <div>{data.overview}</div> */}
     </MovieLI>
   );
