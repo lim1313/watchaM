@@ -6,14 +6,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import addLikeMovie from '../../redux/moveLike/actions';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import queryString from 'query-string';
 
 const MovieLI = styled.li`
-  width: 200px;
+  width: ${({ title }) => (title ? '150px' : '200px')};
   margin-bottom: 1.5rem;
 
   & .data {
     margin-bottom: 0.2rem;
+
+    &.subDate {
+      display: ${({ title }) => (title ? 'none' : 'block')};
+    }
   }
 
   & .imageWrap {
@@ -36,8 +41,8 @@ const MovieLI = styled.li`
 
     & img {
       border-radius: 3px;
-      width: 200px;
-      height: 300px;
+      width: ${({ title }) => (title ? '150px' : '200px')};
+      height: ${({ title }) => (title ? '220px' : '300px')};
     }
 
     & .heart {
@@ -68,22 +73,21 @@ const MovieLI = styled.li`
 `;
 
 const Movie = ({ data, num, likeMV }) => {
-  const [likeMv, setLikeMv] = useState(false);
+  const { search } = useLocation();
+  const { title } = queryString.parse(search);
 
   const dispatch = useDispatch();
-
   const heartClick = (data) => {
     dispatch(addLikeMovie(data));
-    setLikeMv(!likeMv);
   };
 
   return (
-    <MovieLI>
+    <MovieLI title={title}>
       <div className='imageWrap'>
         <Link
           to={{
             pathname: '/movieList/contents',
-            search: `?title=${data.original_title}`,
+            search: `?title=${data.original_title}&bId=${data.backdrop_path}`,
           }}
         >
           <img
@@ -104,13 +108,12 @@ const Movie = ({ data, num, likeMV }) => {
         </span>
       </div>
       <div className='data'>{data.original_title}</div>
-      <div className='data subData'>{data.release_date}</div>
+      <div className='data subData subDate'>{data.release_date}</div>
       <div className='data subData'>
         <span>Average </span>
         <FontAwesomeIcon icon={faStar} />
         <span> {data.vote_average}</span>
       </div>
-      {/* <div>{data.overview}</div> */}
     </MovieLI>
   );
 };

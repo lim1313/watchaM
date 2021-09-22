@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
+import { useLocation, useParams } from 'react-router-dom';
+import styled, { css } from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import Movie from './movie';
+import queryString from 'query-string';
 
 const MovieUL = styled.ul`
   padding: 0;
@@ -11,16 +12,26 @@ const MovieUL = styled.ul`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+
+  ${({ title }) =>
+    title &&
+    css`
+      padding: 1rem;
+      border: 1.5px solid rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+    `}
 `;
 
 const MoviePopularList = () => {
   const allMovie = useSelector((state) => state.allMovie);
   const likeMovie = useSelector((state) => state.likeMovie);
-
   let { like } = useParams();
 
+  const { search } = useLocation();
+  const { title } = queryString.parse(search);
+
   return (
-    <MovieUL>
+    <MovieUL title={title}>
       {like ? (
         likeMovie.length === 0 ? (
           <div>찜한 영화가 없습니다</div>

@@ -24,10 +24,3 @@ export const allMovie = (data) => {
     payload: data,
   };
 };
-
-// export const likeAttr = (data) => {
-//   return {
-//     type: LIKE_ATTR,
-//     payload: data,
-//   };
-// };

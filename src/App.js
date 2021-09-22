@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const InnerWrapper = styled.div`
+export const InnerWrapper = styled.div`
   width: 80%;
   margin: 0 auto;
 `;
@@ -34,25 +34,23 @@ function App() {
     <BrowserRouter>
       <Wrapper>
         <Navbar />
-        <InnerWrapper>
-          <Switch>
-            <Route exact path='/'>
-              <MovieList />
-            </Route>
-            <Route exact path='/movieList'>
-              <MovieList />
-            </Route>
-            <Route exact path='/movieList/contents'>
-              <MovieContent />
-            </Route>
-            <Route exact path='/movieList/:like'>
-              <MovieList />
-            </Route>
-            <Route>
-              <Emptypage />
-            </Route>
-          </Switch>
-        </InnerWrapper>
+        <Switch>
+          <Route exact path='/'>
+            <MovieList />
+          </Route>
+          <Route exact path='/movieList'>
+            <MovieList />
+          </Route>
+          <Route exact path='/movieList/contents'>
+            <MovieContent />
+          </Route>
+          <Route exact path='/movieList/:like'>
+            <MovieList />
+          </Route>
+          <Route>
+            <Emptypage />
+          </Route>
+        </Switch>
       </Wrapper>
     </BrowserRouter>
   );
