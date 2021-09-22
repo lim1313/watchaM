@@ -82,8 +82,8 @@ const Movie = ({ data, num, likeMV }) => {
       <div className='imageWrap'>
         <Link
           to={{
-            pathname: '/movieList',
-            search: `?movie=${data.original_title}`,
+            pathname: '/movieList/contents',
+            search: `?title=${data.original_title}`,
           }}
         >
           <img

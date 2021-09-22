@@ -57,7 +57,7 @@ const SearchInputForm = ({ focus, iconClick }) => {
   const hitory = useHistory();
 
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.allMovie);
+  const state = useSelector((state) => state.movieTitle);
   const movieName = state.map((v) => v.original_title);
 
   useEffect(() => {
