@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import queryString from 'query-string';
 import { useLocation } from 'react-router-dom';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
@@ -55,6 +55,10 @@ const MovieContent = (props) => {
   const { search } = useLocation();
   const { title, bId } = queryString.parse(search);
   const movieTitle = useSelector((state) => state.movieTitle);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [search]);
 
   return (
     <>

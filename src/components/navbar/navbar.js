@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import NavLink from './navLink';
+import Scrolltop from './scrolltop';
 import SearchMovie from './searchMovie';
 
 const NavBar = styled.div`
@@ -23,6 +24,7 @@ const Navbar = (props) => {
       <div>
         <NavLink />
         <SearchMovie />
+        <Scrolltop />
       </div>
     </NavBar>
   );

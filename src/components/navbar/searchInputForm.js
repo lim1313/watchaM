@@ -52,6 +52,7 @@ const MovieTitle = styled.li`
 const SearchInputForm = ({ focus, iconClick }) => {
   const [inputValue, setInputValue] = useState();
   const [dropBox, setDropBox] = useState([]);
+  const [drop, setdrop] = useState(false);
 
   const inputRef = useRef(null);
   const hitory = useHistory();
@@ -69,7 +70,9 @@ const SearchInputForm = ({ focus, iconClick }) => {
   const submitMovie = (data, e) => {
     if (e) e.preventDefault();
     dispatch(searchMovie(data));
-    //TODO: Link추가해야하는 부분 어떻게 하는 거지??
+
+    //!---------------//
+    // TODO: Link추가 / Router 추가 필요 / 현재 history만 있는 상태!
     hitory.push(`/movieList?search=${data}`);
   };
 
@@ -78,6 +81,7 @@ const SearchInputForm = ({ focus, iconClick }) => {
     let dropTitle = movieName.filter((title) =>
       title.toLowerCase().includes(e.target.value.toLowerCase())
     );
+    setdrop(true);
     setDropBox(dropTitle);
   };
 
@@ -92,6 +96,11 @@ const SearchInputForm = ({ focus, iconClick }) => {
     }
   };
 
+  const inputBoxBlur = () => {
+    iconClick(inputRef.current.value);
+    setdrop(false);
+  };
+
   return (
     <form onSubmit={(e) => submitMovie(inputRef.current.value, e)}>
       <InputBox
@@ -101,10 +110,10 @@ const SearchInputForm = ({ focus, iconClick }) => {
         onChange={inputChange}
         ref={inputRef}
         focusInput={focus}
-        onBlur={() => iconClick(inputRef.current.value)}
+        onBlur={(e) => inputBoxBlur(e)}
         onKeyDown={keyDown}
       ></InputBox>
-      {inputValue ? (
+      {inputValue && drop ? (
         <Auto>
           <MovieTitle topWord={true}>연관검색어</MovieTitle>
           {dropBox.map((title) => (
