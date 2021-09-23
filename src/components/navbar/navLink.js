@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { allMovie } from '../../redux/moveList/actions';
 
 const LinkStyle = styled(Link)`
   font-size: ${({ logo }) => (logo ? '1.5rem' : '1.1rem')};
@@ -17,20 +16,12 @@ const LinkStyle = styled(Link)`
 `;
 
 const NavLink = (props) => {
-  const dispatch = useDispatch();
-
-  const allMv = () => {
-    dispatch(allMovie());
-  };
-
   return (
     <div>
-      <LinkStyle to='/' logo='ture' onClick={allMv}>
+      <LinkStyle to='/' logo='ture'>
         WatchaM
       </LinkStyle>
-      <LinkStyle to='/movieList' onClick={allMv}>
-        전체 리스트
-      </LinkStyle>
+      <LinkStyle to='/movieList'>전체 리스트</LinkStyle>
       <LinkStyle to='/movieList/like'>찜한 영화</LinkStyle>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
@@ -77,6 +77,7 @@ const Movie = ({ data, num, likeMV }) => {
   const { title } = queryString.parse(search);
 
   const dispatch = useDispatch();
+
   const heartClick = (data) => {
     dispatch(addLikeMovie(data));
   };

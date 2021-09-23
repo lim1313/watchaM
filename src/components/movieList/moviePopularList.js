@@ -1,10 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import Movie from './movie';
-import queryString from 'query-string';
 
 const MovieUL = styled.ul`
   padding: 0;
@@ -25,14 +24,14 @@ const MovieUL = styled.ul`
 const MoviePopularList = () => {
   const allMovie = useSelector((state) => state.allMovie);
   const likeMovie = useSelector((state) => state.likeMovie);
-  let { like } = useParams();
+  const searchMovie = useSelector((state) => state.searchMovie);
 
-  const { search } = useLocation();
-  const { title } = queryString.parse(search);
+  const { pathname } = useLocation();
+  console.log(pathname);
 
   return (
-    <MovieUL title={title}>
-      {like ? (
+    <MovieUL title={pathname === '/movieList/contents'}>
+      {pathname === '/movieList/like' ? (
         likeMovie.length === 0 ? (
           <div>찜한 영화가 없습니다</div>
         ) : (
@@ -40,6 +39,14 @@ const MoviePopularList = () => {
             <Movie key={uuidv4()} data={data} num={i} likeMV />
           ))
         )
+      ) : pathname === '/movieList/searchMovie' ? (
+        searchMovie.map((data, i) => {
+          let likeMV = false;
+          likeMovie.forEach((v) =>
+            v.backdrop_path === data.backdrop_path ? (likeMV = true) : null
+          );
+          return <Movie key={uuidv4()} data={data} num={i} likeMV={likeMV} />;
+        })
       ) : (
         allMovie.map((data, i) => {
           let likeMV = false;

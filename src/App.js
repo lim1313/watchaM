@@ -8,7 +8,6 @@ import Navbar from './components/navbar/navbar';
 import { initAllMovie } from './redux/moveList/actions';
 
 import dotenv from 'dotenv';
-import { allMovieTitle } from './redux/movieTitle/actions';
 import Emptypage from './components/emptypage';
 import MovieContent from './components/movieContent/movieContent';
 dotenv.config();
@@ -27,7 +26,6 @@ function App() {
 
   useEffect(() => {
     dispatch(initAllMovie(process.env.REACT_APP_API_KEY));
-    dispatch(allMovieTitle(process.env.REACT_APP_API_KEY));
   }, []);
 
   return (
@@ -41,10 +39,13 @@ function App() {
           <Route exact path='/movieList'>
             <MovieList />
           </Route>
-          <Route exact path='/movieList/contents'>
+          <Route exact path='/movieList/searchMovie'>
+            <MovieList />
+          </Route>
+          <Route exact path='/movieList/:value'>
             <MovieContent />
           </Route>
-          <Route exact path='/movieList/:like'>
+          <Route exact path='/movieList/:value'>
             <MovieList />
           </Route>
           <Route>

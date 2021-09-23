@@ -1,5 +1,4 @@
 import { INIT_MOVIE } from './type';
-import { SEARCH_MOVIE } from './type';
 
 export const initAllMovie = (movieKey) => {
   return (dispatch) => {
@@ -8,13 +7,6 @@ export const initAllMovie = (movieKey) => {
       .then((data) => {
         dispatch(allMovie(data.results));
       });
-  };
-};
-
-export const searchMovie = (name) => {
-  return {
-    type: SEARCH_MOVIE,
-    payload: name,
   };
 };
 

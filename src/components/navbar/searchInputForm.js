@@ -2,8 +2,8 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import { searchMovie } from '../../redux/moveList/actions';
 import { v4 as uuidv4 } from 'uuid';
+import { searchMovie } from '../../redux/searchMovie/actions';
 
 const InputBox = styled.input`
   outline: none;
@@ -58,7 +58,7 @@ const SearchInputForm = ({ focus, iconClick }) => {
   const hitory = useHistory();
 
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.movieTitle);
+  const state = useSelector((state) => state.allMovie);
   const movieName = state.map((v) => v.original_title);
 
   useEffect(() => {
@@ -71,9 +71,10 @@ const SearchInputForm = ({ focus, iconClick }) => {
     if (e) e.preventDefault();
     dispatch(searchMovie(data));
 
-    //!---------------//
-    // TODO: Link추가 / Router 추가 필요 / 현재 history만 있는 상태!
-    hitory.push(`/movieList?search=${data}`);
+    // TODO: input으로 경로를 바꾸고 싶다면 history 사용!
+    hitory.push(`/movieList/searchMovie?input="${data}`);
+    setInputValue('');
+    setdrop(false);
   };
 
   const inputChange = (e) => {

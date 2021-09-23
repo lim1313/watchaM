@@ -54,7 +54,7 @@ const DetailWrap = styled.section`
 const MovieContent = (props) => {
   const { search } = useLocation();
   const { title, bId } = queryString.parse(search);
-  const movieTitle = useSelector((state) => state.movieTitle);
+  const allMovie = useSelector((state) => state.allMovie);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -62,7 +62,7 @@ const MovieContent = (props) => {
 
   return (
     <>
-      {movieTitle
+      {allMovie
         .filter((v) => v.backdrop_path === bId)
         .map((data) => (
           <Wrapper>
