@@ -6,11 +6,13 @@ import { v4 as uuidv4 } from 'uuid';
 import Movie from './movie';
 
 const MovieUL = styled.ul`
-  padding: 0;
   list-style: none;
+
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
+
+  padding: 0;
 
   ${({ title }) =>
     title &&
@@ -19,6 +21,11 @@ const MovieUL = styled.ul`
       border: 1.5px solid rgba(0, 0, 0, 0.2);
       border-radius: 5px;
     `}
+
+  i {
+    width: ${({ title }) => (title ? '150px' : '200px')};
+    margin: 0 1rem;
+  }
 `;
 
 const MoviePopularList = () => {
@@ -27,7 +34,6 @@ const MoviePopularList = () => {
   const searchMovie = useSelector((state) => state.searchMovie);
 
   const { pathname } = useLocation();
-  console.log(pathname);
 
   return (
     <MovieUL title={pathname === '/movieList/contents'}>
@@ -56,6 +62,12 @@ const MoviePopularList = () => {
           return <Movie key={uuidv4()} data={data} num={i} likeMV={likeMV} />;
         })
       )}
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
     </MovieUL>
   );
 };

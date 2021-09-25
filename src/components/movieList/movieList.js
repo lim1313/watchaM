@@ -5,6 +5,8 @@ import MoviePopularList from './moviePopularList';
 const Wrapper = styled.div`
   width: ${({ theme }) => theme.wrapper.width};
   margin: ${({ theme }) => theme.wrapper.margin};
+  /* display: flex;
+  justify-content: center; */
 `;
 
 const MovieList = () => {

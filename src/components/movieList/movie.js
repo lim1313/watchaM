@@ -11,7 +11,10 @@ import queryString from 'query-string';
 
 const MovieLI = styled.li`
   width: ${({ title }) => (title ? '150px' : '200px')};
+  /* width: 15%; */
+  margin: 0 1rem;
   margin-bottom: 1.5rem;
+  /* flex-basis: 20%; */
 
   & .data {
     margin-bottom: 0.2rem;
@@ -52,7 +55,7 @@ const MovieLI = styled.li`
       font-size: 1.5rem;
       color: rgba(255, 255, 255, 0.7);
       margin: 0.5rem;
-      transition: color 0.3s;
+      transition: color, font-size 0.3s;
 
       &.filled {
         color: ${({ theme }) => theme.colors.mainPink};
@@ -63,6 +66,7 @@ const MovieLI = styled.li`
         cursor: pointer;
         color: ${({ theme }) => theme.colors.mainPink};
         filter: drop-shadow(0px 0px 5px white);
+        font-size: 1.8rem;
       }
     }
   }
@@ -102,9 +106,9 @@ const Movie = ({ data, num, likeMV }) => {
           onClick={() => heartClick(data)}
         >
           {likeMV ? (
-            <FontAwesomeIcon icon={faHeart} />
+            <FontAwesomeIcon icon={faHeart} className='heartIcon' />
           ) : (
-            <FontAwesomeIcon icon={farHeart} />
+            <FontAwesomeIcon icon={farHeart} className='heartIcon' />
           )}
         </span>
       </div>
