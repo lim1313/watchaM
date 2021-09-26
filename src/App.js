@@ -39,7 +39,7 @@ function App() {
           <Route exact path='/movieList'>
             <MovieList />
           </Route>
-          <Route exact path='/movieList/searchMovie'>
+          <Route exact path='/movieList/searchMovie/:id'>
             <MovieList />
           </Route>
           <Route exact path='/movieList/:value'>

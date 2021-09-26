@@ -70,9 +70,9 @@ const SearchInputForm = ({ focus, iconClick }) => {
   const submitMovie = (data, e) => {
     if (e) e.preventDefault();
     dispatch(searchMovie(data));
-
-    // TODO: input으로 경로를 바꾸고 싶다면 history 사용!
-    hitory.push(`/movieList/searchMovie?input="${data}`);
+    // TODO: input으로 경로를 바꾸고 싶다면 history 사용! 하지만 url link가 안된다.
+    // hitory.push(`/movieList/searchMovie?input=${data}`);
+    hitory.push(`/movieList/searchMovie/${data}`);
     setInputValue('');
     setdrop(false);
   };
@@ -97,7 +97,7 @@ const SearchInputForm = ({ focus, iconClick }) => {
     }
   };
 
-  const inputBoxBlur = () => {
+  const inputBoxBlur = (e) => {
     iconClick(inputRef.current.value);
     setdrop(false);
   };
@@ -121,7 +121,8 @@ const SearchInputForm = ({ focus, iconClick }) => {
             <MovieTitle
               key={uuidv4()}
               className={inputValue === title ? 'selected' : null}
-              onClick={() => submitMovie(title)}
+              //! onClick일 경우 onBlur와 ordering issue가 있다. 그래서 onMouseDown으로 처리해준다.
+              onMouseDown={(e) => submitMovie(title, e)}
             >
               {title}
             </MovieTitle>

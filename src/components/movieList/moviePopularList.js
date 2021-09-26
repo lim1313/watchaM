@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import Movie from './movie';
@@ -33,6 +33,7 @@ const MoviePopularList = () => {
   const likeMovie = useSelector((state) => state.likeMovie);
   const searchMovie = useSelector((state) => state.searchMovie);
 
+  const { id } = useParams();
   const { pathname } = useLocation();
 
   return (
@@ -45,14 +46,28 @@ const MoviePopularList = () => {
             <Movie key={uuidv4()} data={data} num={i} likeMV />
           ))
         )
-      ) : pathname === '/movieList/searchMovie' ? (
-        searchMovie.map((data, i) => {
-          let likeMV = false;
-          likeMovie.forEach((v) =>
-            v.backdrop_path === data.backdrop_path ? (likeMV = true) : null
-          );
-          return <Movie key={uuidv4()} data={data} num={i} likeMV={likeMV} />;
-        })
+      ) : id ? (
+        searchMovie.length === 0 ? (
+          allMovie
+            .filter((data, i) => data.original_title.includes(id))
+            .map((data, i) => {
+              let likeMV = false;
+              likeMovie.forEach((v) =>
+                v.backdrop_path === data.backdrop_path ? (likeMV = true) : null
+              );
+              return (
+                <Movie key={uuidv4()} data={data} num={i} likeMV={likeMV} />
+              );
+            })
+        ) : (
+          searchMovie.map((data, i) => {
+            let likeMV = false;
+            likeMovie.forEach((v) =>
+              v.backdrop_path === data.backdrop_path ? (likeMV = true) : null
+            );
+            return <Movie key={uuidv4()} data={data} num={i} likeMV={likeMV} />;
+          })
+        )
       ) : (
         allMovie.map((data, i) => {
           let likeMV = false;

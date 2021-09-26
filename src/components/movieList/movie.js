@@ -11,10 +11,8 @@ import queryString from 'query-string';
 
 const MovieLI = styled.li`
   width: ${({ title }) => (title ? '150px' : '200px')};
-  /* width: 15%; */
   margin: 0 1rem;
   margin-bottom: 1.5rem;
-  /* flex-basis: 20%; */
 
   & .data {
     margin-bottom: 0.2rem;
