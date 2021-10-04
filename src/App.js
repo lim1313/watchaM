@@ -7,9 +7,9 @@ import MovieList from './components/movieList/movieList';
 import Navbar from './components/navbar/navbar';
 import { initAllMovie } from './redux/moveList/actions';
 
-import dotenv from 'dotenv';
 import Emptypage from './components/emptypage';
 import MovieContent from './components/movieContent/movieContent';
+import dotenv from 'dotenv';
 dotenv.config();
 
 const Wrapper = styled.div`
