@@ -1,9 +1,9 @@
 import { INIT_MOVIE } from './type';
 
-export const initAllMovie = (movieKey) => {
+export const initAllMovie = (service) => {
   return (dispatch) => {
-    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${movieKey}`)
-      .then((res) => res.json())
+    service //
+      .getMovies() //
       .then((data) => {
         dispatch(allMovie(data.results));
       });

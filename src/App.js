@@ -9,8 +9,8 @@ import { initAllMovie } from './redux/moveList/actions';
 
 import Emptypage from './components/emptypage';
 import MovieContent from './components/movieContent/movieContent';
-import dotenv from 'dotenv';
-dotenv.config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 
 const Wrapper = styled.div`
   width: 100%;
@@ -21,11 +21,11 @@ export const InnerWrapper = styled.div`
   margin: 0 auto;
 `;
 
-function App() {
+function App({ movieService }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(initAllMovie(process.env.REACT_APP_API_KEY));
+    dispatch(initAllMovie(movieService));
   }, []);
 
   return (
