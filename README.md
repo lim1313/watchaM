@@ -1,3 +1,6 @@
+## 배포 링크
+📎 [watcham](https://lim1313.github.io/watcham/)
+
 ## 프로젝트 목적
 - react, redux, redux-thunk, styled-component를 종합적으로 활용해 보기 위함으로 제작한 프로젝트
 
