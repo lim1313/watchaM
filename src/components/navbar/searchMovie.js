@@ -9,10 +9,11 @@ const Wrapper = styled.div`
 `;
 
 const FontIcon = styled(FontAwesomeIcon)`
+  box-sizing: content-box;
   position: absolute;
   font-size: 22px;
   color: rgba(0, 0, 0, 0.2);
-  margin: 8px;
+  padding: 8px;
 
   &:hover {
     cursor: pointer;

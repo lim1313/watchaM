@@ -10,6 +10,7 @@ const InputBox = styled.input`
   width: ${({ focusInput }) => (focusInput ? '300px' : '38px')};
   height: 38px;
   margin: 0;
+  padding: 0;
   padding-left: 38px;
   font-size: 1rem;
   background-color: rgba(255, 255, 255, 0.7);
