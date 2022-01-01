@@ -9,7 +9,7 @@ import MovieList from './components/movieList/movieList';
 import Navbar from './components/navbar/navbar';
 import { initAllMovie } from './redux/moveList/actions';
 
-import Emptypage from './components/emptypage';
+// import Emptypage from './components/emptypage';
 import MovieContent from './components/movieContent/movieContent';
 
 const Wrapper = styled.div`
@@ -49,7 +49,7 @@ function App({ movieService }) {
             <MovieList />
           </Route>
           <Route>
-            <Emptypage />
+            <MovieList />
           </Route>
         </Switch>
       </Wrapper>
