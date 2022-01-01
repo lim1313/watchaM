@@ -7,7 +7,7 @@ import store from './redux/store';
 
 import GlobalStyle from './styled/globalStyled';
 import { ThemeProvider } from 'styled-components';
-import theme from './styled/theme';
+import { theme } from './styled/theme';
 import HttpClient from './network/http';
 import MovieService from './service/movieService';
 

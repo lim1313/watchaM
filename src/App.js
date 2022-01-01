@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps*/
+
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
@@ -9,8 +11,6 @@ import { initAllMovie } from './redux/moveList/actions';
 
 import Emptypage from './components/emptypage';
 import MovieContent from './components/movieContent/movieContent';
-// import dotenv from 'dotenv';
-// dotenv.config();
 
 const Wrapper = styled.div`
   width: 100%;
